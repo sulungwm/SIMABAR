@@ -1,0 +1,295 @@
+@page {
+    size: A4;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+.page-break {
+    page-break-before: always;
+}
+
+.container {
+    width: 210mm;
+    /* Lebar A4 */
+    height: 297mm;
+    /* Tinggi A4 */
+    border: 2px solid #000;
+    margin: auto;
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+.header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+}
+
+.sub-header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Menempatkan gambar dan teks di tengah */
+}
+
+.logo {
+    width: 20mm;
+    /* Lebar gambar setara dengan dua teks */
+    height: auto;
+    filter: grayscale(100%);
+    /* Efek hitam putih */
+    margin-right: 20px;
+    /* Menyesuaikan jarak antara gambar dan teks */
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.sub-title {
+    font-size: 14px;
+    text-align: center;
+    /* Ukuran teks sama dengan title */
+}
+
+td.border-jajar-genjang {
+    position: relative;
+    /* Diperlukan untuk memposisikan elemen border */
+}
+
+td.border-jajar-genjang::before {
+
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 15px;
+    right: 20px;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 2px solid #000;
+    transform: skewX(-30deg);
+    /* Menambahkan padding 10px di semua sisi */
+
+}
+
+
+.garis-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.garis-atas,
+.garis-bawah {
+    flex: 0 0 5px;
+    /* Set height and prevent content from pushing them */
+    background-color: #000;
+}
+
+.content {
+    flex: 1;
+    /* Allow content to occupy remaining space */
+    text-align: center;
+    /* Center text */
+    display: flex;
+    /* Enable flexbox layout for content alignment */
+    align-items: center;
+    /* Align items vertically */
+    justify-content: flex-start;
+    /* Align items to the start (left) */
+}
+
+.jajar-genjang {
+    display: inline-block;
+    /* Allow inline placement */
+    position: relative;
+    /* Enable positioning */
+    padding: 5px 10px;
+    box-sizing: border-box;
+    background-color: #fff;
+
+    border: 2px solid #000;
+
+    transform: skewX(-30deg);
+
+    margin-left: 2em;
+    margin-top: 3px;
+    margin-bottom: 3px;
+
+}
+
+.table-centered {
+    display: flex;
+    justify-content: center;
+}
+
+@media print {
+
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+    }
+
+    .page-break {
+        page-break-before: always;
+    }
+
+    .container {
+        border: 0px solid #000;
+        box-sizing: border-box;
+        text-align: center;
+        /* Menempatkan konten di tengah */
+
+        /* Memberan border */
+    }
+
+    .header {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 2px solid #000;
+        padding-bottom: 10px;
+    }
+
+    .sub-header {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* Menempatkan gambar dan teks di tengah */
+    }
+
+    .logo {
+        width: 20mm;
+        /* Lebar gambar setara dengan dua teks */
+        height: auto;
+        filter: grayscale(100%);
+        /* Efek hitam putih */
+        margin-right: 20px;
+        /* Menyesuaikan jarak antara gambar dan teks */
+    }
+
+    .title {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .sub-title {
+        font-size: 12px;
+        text-align: center;
+        /* Ukuran teks sama dengan title */
+    }
+
+    td.border-jajar-genjang {
+        position: relative;
+        /* Diperlukan untuk memposisikan elemen border */
+    }
+
+    td.border-jajar-genjang::before {
+
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 15px;
+        right: 20px;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        border: 2px solid #000;
+        transform: skewX(-30deg);
+        /* Menambahkan padding 10px di semua sisi */
+
+    }
+
+
+    .garis-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+
+    /* Tampilkan garis atas dan garis bawah saat mencetak */
+    .garis-atas,
+    .garis-bawah {
+        display: block;
+        width: 100%;
+        border-top: 1px solid #000;
+        /* Atur garis atas */
+        border-bottom: 1px solid #000;
+        /* Atur garis bawah */
+        margin-top: 10px;
+        /* Sesuaikan jarak dengan konten sebelumnya */
+        margin-bottom: 10px;
+        /* Sesuaikan jarak dengan konten setelahnya */
+    }
+
+
+    .content {
+        flex: 1;
+        /* Allow content to occupy remaining space */
+        text-align: center;
+        /* Center text */
+        display: flex;
+        /* Enable flexbox layout for content alignment */
+        align-items: center;
+        /* Align items vertically */
+        justify-content: flex-start;
+        /* Align items to the start (left) */
+        white-space: nowrap
+    }
+
+    .jajar-genjang {
+        display: inline-block;
+        /* Allow inline placement */
+        position: relative;
+        /* Enable positioning */
+        padding: 5px 10px;
+        box-sizing: border-box;
+        background-color: #fff;
+
+        border: 2px solid #000;
+
+        transform: skewX(-30deg);
+
+        margin-left: 2em;
+        margin-top: 3px;
+        margin-bottom: 3px;
+
+    }
+
+    .table-centered {
+        display: flex;
+        justify-content: center;
+    }
+
+    #printButton {
+        display: none;
+    }
+}
