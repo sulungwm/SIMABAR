@@ -51,9 +51,6 @@ $routes->group('produk',  ['filter' => 'auth'], function ($routes) {
 
 $routes->group('detailproduk', ['filter' => 'auth'], function ($routes) {
     $routes->get('show/(:num)', 'DetailProdukController::show/$1');
-    $routes->get('create/(:num)', 'DetailProdukController::create/$1');
-    $routes->post('store', 'DetailProdukController::store');
-    $routes->post('update/(:num)', 'DetailProdukController::update/$1');
-    $routes->get('edit/(:num)', 'DetailProdukController::edit/$1');
-    $routes->get('delete/(:num)', 'DetailProdukController::destroy/$1');
+    $routes->post('add/(:num)', 'DetailProdukController::add/$1');
+    $routes->get('delete/(:num)', 'DetailProdukController::delete/$1');
 });

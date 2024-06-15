@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\ProdukModel;
 use App\Models\DetailProdukModel;
+
 class DetailProdukController extends BaseController
 {
     protected $ProdukModel;
@@ -19,71 +20,69 @@ class DetailProdukController extends BaseController
     public function show($id)
     {
         $data['produk'] = $this->ProdukModel->getById($id);
+        $data['detail'] = $this->DetailProduk->where('id_produk',$id)->findAll();
         return view('detailproduk/index', $data);
     }
 
-    // public function create()
-    // {
-    //     $kategori = $this->KategoriModel->findAll();
-    //     $jenis = $this->JenisModel->findAll();
-    //     $data = [
-    //         'kategori' => $kategori,
-    //         'jenis' => $jenis,
-    //     ];
 
-    //     return view('produk/create', $data);
-    // }
+    public function add($id)
+    {
+        $validationRules = [
+            'file' => 'uploaded[file]|is_image[file]|mime_in[file,image/jpg,image/jpeg,image/gif,image/png]'
+        ];
 
+        if (!$this->validate($validationRules)) {
+            // Jika validasi gagal, kembalikan ke halaman create dengan pesan error
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
 
-    // public function add()
-    // {
-    //     $data = [
-    //         'id_user' => session()->get('id_user'),
-    //         'id_kategori' => $this->request->getPost('id_kategori'),
-    //         'id_jenis' => $this->request->getPost('id_jenis'),
-    //         'stock' => $this->request->getPost('stock'),
-    //         'nama_produk' => $this->request->getPost('nama_produk'),
-    //         'deskripsi' => $this->request->getPost('deskripsi'),
-    //         'harga' => $this->request->getPost('harga')
-    //     ];
+        $file = $this->request->getFile('file');
+        if ($file->isValid() && !$file->hasMoved()) {
+            $newName = $file->getRandomName();
+            $filePath = ROOTPATH . 'public/uploads/' . $newName;
+            $file->move(ROOTPATH . 'public/uploads/', $newName);
 
-    //     $this->ProdukModel->insert($data);
-    //     return redirect()->to('/produk');
-    // }
+            // Call the function to center crop the image
+            $this->centerCropSquare($filePath);
 
-    // public function edit($id)
-    // {
-    //     $produk = $this->ProdukModel->find($id);
-    //     $kategori = $this->KategoriModel->findAll();
-    //     $jenis = $this->JenisModel->findAll();
-    //     $data = [
-    //         'produk' => $produk,
-    //         'kategori' => $kategori,
-    //         'jenis' => $jenis,
-    //     ];
+            // Store the file information in the database
+            $this->DetailProduk->insert([
+                'id_produk' => $id,
+                'nama_file' => $newName,
+            ]);
 
-    //     return view('produk/edit', $data);
-    // }
+            return redirect()->to('/detailproduk/show/' . $id)->with('success', 'File uploaded successfully.');
+        }
 
-    // public function update($id)
-    // {
-    //     $data = [
-    //         'id_user' => session()->get('id_user'),
-    //         'id_kategori' => $this->request->getPost('id_kategori'),
-    //         'id_jenis' => $this->request->getPost('id_jenis'),
-    //         'stock' => $this->request->getPost('stock'),
-    //         'nama_produk' => $this->request->getPost('nama_produk'),
-    //         'deskripsi' => $this->request->getPost('deskripsi'),
-    //         'harga' => $this->request->getPost('harga')
-    //     ];
+        return redirect()->back()->with('error', 'Failed to upload the file.');
+    }
 
-    //     $this->ProdukModel->update($id, $data);
-    //     return redirect()->to('/produk');
-    // }
+    private function centerCropSquare($filePath)
+    {
+        // Load the image manipulation library
+        $image = \Config\Services::image()
+            ->withFile($filePath)
+            ->fit(200, 200, 'center')
+            ->save($filePath);
+    }
 
-    // public function delete($id)
-    // {
-    //     $this->ProdukModel->delete($id);
-    //     return redirect()->to('/produk');
-    // }
+    public function delete($id)
+    {
+        $detailProduk = $this->DetailProduk->find($id);
+        if ($detailProduk) {
+            $filePath = ROOTPATH . 'public/uploads/' . $detailProduk['nama_file'];
+
+            // Delete the file from the directory
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+
+            // Delete the record from the database
+            $this->DetailProduk->delete($id);
+
+            return redirect()->to('/detailproduk/show/' . $detailProduk['id_produk'])->with('success', 'File deleted successfully.');
+        }
+
+        return redirect()->back()->with('error', 'File not found.');
+    }
 }
