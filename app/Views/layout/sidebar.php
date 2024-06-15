@@ -35,5 +35,24 @@
                    <i class="ti-package menu-icon"></i>
                    <span class="menu-title">Data Produk</span>
                </a>
+
+           </li>
+
+           <li class="nav-item  <?= (strpos($uri, '/masuk') !== false) ? 'active' : '' ?>">
+               <a class="nav-link" href="/masuk">
+                   <i class="ti-arrow-top-right menu-icon"></i>
+                   <span class="menu-title">Barang Masuk</span>
+               </a>
+
+           </li>
+
+           <li class="nav-item  <?= (strpos($uri, '/keluar') !== false) ? 'active' : '' ?>">
+               <a class="nav-link" href="/keluar">
+                   <i class="ti-arrow-top-left menu-icon"></i>
+                   <span class="menu-title">Barang Keluar</span>
+               </a>
+
+           </li>
+
        </ul>
    </nav>

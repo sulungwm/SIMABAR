@@ -7,6 +7,7 @@ use App\Models\JenisModel;
 use App\Models\KategoriModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\ProdukModel;
+
 class ProdukController extends BaseController
 {
     protected $ProdukModel;
@@ -80,7 +81,7 @@ class ProdukController extends BaseController
             'harga' => $this->request->getPost('harga')
         ];
 
-        $this->ProdukModel->update($id,$data);
+        $this->ProdukModel->update($id, $data);
         return redirect()->to('/produk');
     }
 
