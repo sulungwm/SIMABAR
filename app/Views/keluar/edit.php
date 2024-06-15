@@ -6,28 +6,28 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Tambah Data Barang Keluar</h4>
-                        <form class="forms-sample" action="/masuk/add" method="post">
+                        <h4 class="card-title">Ubah Data Produk</h4>
+                        <form class="forms-sample" action="/keluar/update/<?= $keluar['id_barangkeluar']; ?>" method="post">
                             <div class="form-group">
-                                <label>Nama Barang</label>
+                                <label>Nama Produk</label>
                                 <select class="form-control js-example-basic-single w-100" name="id_produk" required>
                                     <option selected disabled>-</option>
                                     <?php foreach ($produk as $key) : ?>
-                                        <option value="<?= $key['id_produk']; ?>"><?= $key['nama_produk']; ?></option>
+                                        <option value="<?= $key['id_produk']; ?>" <?php if ($key['id_produk'] == $produk['id_produk']) echo 'selected="selected"'; ?>><?= $key['nama_produk']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Jumlah Barang Keluar</label>
-                                <input type="number" class="form-control" name="jumlah_barang" required>
+                                <input type="number" class="form-control" name="jumlah_barang" value="<?= $produk['jumlah_barang']; ?>" required>
                             </div>
                             <div class="form-group">
-                                <label>Tanggal Keluar</label>
-                                <input type="date" class="form-control" name="tanggal_masuk" required>
+                                <label>Tanggal Masuk</label>
+                                <input type="date" class="form-control" name="tanggal_keluar" value="<?= $produk['tanggal_keluar']; ?>" required>
                             </div>
                             <button type="submit" class="btn btn-success mr-2">Simpan</button>
                             <!-- <button class="btn btn-light">Batal</button> -->
-                            <a href="<?= base_url('/masuk'); ?>" class="btn btn-danger">Batal</a>
+                            <a href="<?= base_url('/keluar'); ?>" class="btn btn-danger">Batal</a>
                         </form>
                     </div>
                 </div>

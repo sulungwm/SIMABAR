@@ -58,17 +58,17 @@ $routes->group('detailproduk', ['filter' => 'auth'], function ($routes) {
 $routes->group('masuk',  ['filter' => 'auth'], function ($routes) {
     $routes->get('/', 'MasukController::index');
     $routes->post('add', 'MasukController::add');
-    // $routes->post('update/(:num)', 'MasukController::update/$1');
+    $routes->post('update/(:num)', 'MasukController::update/$1');
     $routes->get('delete/(:num)', 'MasukController::delete/$1');
     $routes->get('create', 'MasukController::create');
-    // $routes->get('edit/(:num)', 'MasukController::edit/$1');
+    $routes->get('edit/(:num)', 'MasukController::edit/$1');
 });
 
 $routes->group('keluar',  ['filter' => 'auth'], function ($routes) {
     $routes->get('/', 'KeluarController::index');
     $routes->post('add', 'KeluarController::add');
-    // $routes->post('update/(:num)', 'KeluarController::update/$1');
+    $routes->post('update/(:num)', 'KeluarController::update/$1');
     $routes->get('delete/(:num)', 'KeluarController::delete/$1');
     $routes->get('create', 'KeluarController::create');
-    // $routes->get('edit/(:num)', 'KeluarController::edit/$1');
+    $routes->get('edit/(:num)', 'KeluarController::edit/$1');
 });

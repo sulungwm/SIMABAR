@@ -52,4 +52,26 @@ class KeluarController extends BaseController
         $this->ProdukModel->delete($id);
         return redirect()->to('/keluar');
     }
+
+    public function edit($id)
+    {
+        $keluar = $this->KeluarModel->find($id);
+        $data = [
+            'keluar' => $keluar
+        ];
+
+        return view('keluar/edit', $data);
+    }
+
+    public function update($id)
+    {
+        $data = [
+            'id_produk' => $this->request->getPost('id_produk'),
+            'jumlah_barang' => $this->request->getPost('jumlah_barang'),
+            'tanggal_masuk' => $this->request->getPost('tanggal_masuk')
+        ];
+
+        $this->KeluarModel->update($id, $data);
+        return redirect()->to('/keluar');
+    }
 }

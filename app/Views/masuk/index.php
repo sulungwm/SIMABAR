@@ -23,7 +23,7 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama Produk</th>
-                                                <th>Jumlah Barang</th>
+                                                <th>Jumlah Barang Masuk</th>
                                                 <th>Tanggal Masuk</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -37,8 +37,7 @@
                                                     <td><?= $row['jumlah_barang']; ?></td>
                                                     <td><?= $row['tanggal_masuk']; ?></td>
                                                     <td>
-                                                        <!-- <a href="/detailproduk/show/<?= $row['id_produk']; ?>" class="btn btn-sm btn-dark">Detail</a> -->
-                                                        <!-- <a href="/produk/edit/<?= $row['id_produk']; ?>" class="btn btn-sm btn-primary">Edit</a> -->
+                                                        <a href="/masuk/edit/<?= $row['id_barangmasuk']; ?>" class="btn btn-sm btn-primary">Edit</a>
                                                         <a href="/masuk/delete/<?= $row['id_barangmasuk']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Delete</a>
                                                     </td>
                                                 </tr>

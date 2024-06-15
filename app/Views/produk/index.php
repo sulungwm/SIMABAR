@@ -26,7 +26,7 @@
                                                 <th>Kategori</th>
                                                 <th>Jenis</th>
                                                 <th>Harga</th>
-                                                <th>Stok</th>
+                                                <th>Stok Awal</th>
                                                 <th>aksi</th>
                                             </tr>
                                         </thead>

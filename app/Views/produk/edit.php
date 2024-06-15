@@ -6,8 +6,8 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Tambah Data Produk</h4>
-                        <form class="forms-sample" action="/produk/update/<?= $produk['id_produk'];?>" method="post">
+                        <h4 class="card-title">Ubah Data Produk</h4>
+                        <form class="forms-sample" action="/produk/update/<?= $produk['id_produk']; ?>" method="post">
                             <div class="form-group">
                                 <label>Kategori</label>
                                 <select class="form-control js-example-basic-single w-100" name="id_kategori" required>
