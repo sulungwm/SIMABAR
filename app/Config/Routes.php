@@ -63,8 +63,7 @@ $routes->group('masuk',  ['filter' => 'auth'], function ($routes) {
     $routes->post('update/(:num)', 'MasukController::update/$1');
     $routes->get('delete/(:num)', 'MasukController::delete/$1');
     $routes->get('create', 'MasukController::create');
-    $routes->get('edit/(:num)', 'MasukController::edit/$1');
-    $routes->get('edit/(:num)', 'MasukController::edit/$1');
+    $routes->post('cetak', 'MasukController::cetak');
 });
 
 $routes->group('keluar',  ['filter' => 'auth'], function ($routes) {
@@ -74,5 +73,10 @@ $routes->group('keluar',  ['filter' => 'auth'], function ($routes) {
     $routes->post('update/(:num)', 'KeluarController::update/$1');
     $routes->get('delete/(:num)', 'KeluarController::delete/$1');
     $routes->get('create', 'KeluarController::create');
-    
+    $routes->post('cetak', 'KeluarController::cetak');
+});
+
+$routes->group('rekap',  ['filter' => 'auth'], function ($routes) {
+    $routes->get('/', 'ProdukController::rekap');
+    $routes->post('cetakrekap/', 'ProdukController::cetakRekap');
 });

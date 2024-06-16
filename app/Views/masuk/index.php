@@ -13,7 +13,7 @@
                             </div>
                             <div class="col-3 text-end">
                                 <a class="btn btn-sm btn-dark btn-icon-text text-white" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    cetak
+                                    Cetak
                                     <i class="ti-printer btn-icon-append"></i>
                                 </a>
                                 <a class="btn btn-success btn-sm" href="/masuk/create">Tambah</a>
@@ -68,7 +68,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form class="forms-sample" action="/masuk/cetak/" method="post">
+                                                <form class="forms-sample" action="/masuk/cetak" target="_blank" method="post">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">

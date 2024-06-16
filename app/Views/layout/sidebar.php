@@ -54,5 +54,13 @@
 
            </li>
 
+
+           <li class="nav-item  <?= (strpos($uri, '/rekap') !== false) ? 'active' : '' ?>">
+               <a class="nav-link" href="/rekap">
+                   <i class="ti-save menu-icon"></i>
+                   <span class="menu-title">Rekapitulasi</span>
+               </a>
+           </li>
+
        </ul>
    </nav>

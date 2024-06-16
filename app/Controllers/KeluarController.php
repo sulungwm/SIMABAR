@@ -6,6 +6,8 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\KeluarModel;
 use App\Models\ProdukModel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class KeluarController extends BaseController
 {
@@ -135,4 +137,72 @@ class KeluarController extends BaseController
 
         return redirect()->to('/keluar');
     }
+
+    public function cetak()
+    {
+        $tgl_awal = $this->request->getPost('tgl_awal');
+        $tgl_akhir = $this->request->getPost('tgl_akhir');
+        $data = $this->KeluarModel->getDataCetak($tgl_awal, $tgl_akhir);
+
+        // Membuat objek Spreadsheet baru
+        $spreadsheet = new Spreadsheet();
+
+        // Mengatur nama sheet
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setTitle('Data Barang Keluar');
+
+
+        // Header kolom
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Nama Produk');
+        $sheet->setCellValue('C1', 'Jumlah Barang');
+        $sheet->setCellValue('D1', 'Tanggal Keluar');
+
+        // Mengatur teks header menjadi bold
+        $headerStyle = [
+            'font' => [
+                'bold' => true,
+            ],
+        ];
+        $sheet->getStyle('A1:D1')->applyFromArray($headerStyle);
+
+        // Menulis data dari database ke Excel
+        $row = 2;
+        $no = 1; // Nomor urut awal
+
+        foreach ($data as $item) {
+            $sheet->setCellValue('A' . $row, $no); // Set nilai kolom A dengan nomor urut
+            $sheet->setCellValue('B' . $row, $item['nama_produk']);
+            $sheet->setCellValue('C' . $row, $item['jumlah_barang']);
+
+            // Mengatur format tanggal_masuk menjadi dd mm yy
+            $tanggal_keluar = date_create($item['tanggal_keluar'])->format('d-m-Y');
+            $sheet->setCellValueExplicit('D' . $row, $tanggal_keluar, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
+
+            $row++;
+            $no++; // Increment nomor urut
+        }
+
+        // Set lebar kolom otomatis berdasarkan konten
+        foreach (range('A', 'D') as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);
+        }
+
+        // Mengatur border untuk seluruh data
+        $lastRow = $sheet->getHighestRow();
+        $sheet->getStyle('A1:D' . $lastRow)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+
+        // Membuat file Excel
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+        $filename = 'data_pengeluaran_barang_' . $tgl_awal . '_-_' . $tgl_akhir . '.xlsx';
+
+        // Simpan file Excel ke folder tertentu atau langsung unduh
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="' . $filename . '"');
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+        exit();
+    }
+
 }

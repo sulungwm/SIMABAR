@@ -3,6 +3,39 @@
 <div class="main-panel">
     <div class="content-wrapper">
         <div class="row">
+            <div class="col-md-12 grid-margin transparent">
+                <div class="row">
+                    <div class="col-md-4 mb-4 stretch-card transparent">
+                        <div class="card card-tale">
+                            <div class="card-body">
+                                <p class="mb-4">Jumlah Produk</p>
+                                <p class="fs-30 mb-2">4006</p>
+                                <p>total jenis produk</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4 stretch-card transparent">
+                        <div class="card card-dark-blue">
+                            <div class="card-body">
+                                <p class="mb-4">Barang Masuk</p>
+                                <p class="fs-30 mb-2">61344</p>
+                                <p>total transaksi barang masuk</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4 stretch-card transparent">
+                        <div class="card card-light-danger">
+                            <div class="card-body">
+                                <p class="mb-4">Barang Keluar</p>
+                                <p class="fs-30 mb-2">34040</p>
+                                <p>total transaksi barang keluar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
