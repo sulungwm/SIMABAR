@@ -64,6 +64,7 @@ $routes->group('masuk',  ['filter' => 'auth'], function ($routes) {
     $routes->get('delete/(:num)', 'MasukController::delete/$1');
     $routes->get('create', 'MasukController::create');
     $routes->get('edit/(:num)', 'MasukController::edit/$1');
+    $routes->get('edit/(:num)', 'MasukController::edit/$1');
 });
 
 $routes->group('keluar',  ['filter' => 'auth'], function ($routes) {

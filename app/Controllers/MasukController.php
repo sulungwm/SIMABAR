@@ -128,4 +128,26 @@ class MasukController extends BaseController
 
         return redirect()->to('/masuk');
     }
+
+    public function edit($id)
+    {
+        $masuk = $this->MasukModel->find($id);
+        $data = [
+            'masuk' => $masuk
+        ];
+
+        return view('masuk/edit', $data);
+    }
+
+    public function update($id)
+    {
+        $data = [
+            'id_produk' => $this->request->getPost('id_produk'),
+            'jumlah_barang' => $this->request->getPost('jumlah_barang'),
+            'tanggal_masuk' => $this->request->getPost('tanggal_masuk')
+        ];
+
+        $this->MasukModel->update($id, $data);
+        return redirect()->to('/masuk');
+    }
 }

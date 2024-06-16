@@ -36,7 +36,7 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama Produk</th>
-                                                <th>Jumlah Barang</th>
+                                                <th>Jumlah Barang Masuk</th>
                                                 <th>Tanggal Masuk</th>
                                                 <th>Aksi</th>
                                             </tr>

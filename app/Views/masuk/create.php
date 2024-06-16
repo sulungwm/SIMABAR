@@ -18,7 +18,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Jumlah Barang</label>
+                                <label>Jumlah Barang Masuk</label>
                                 <input type="number" class="form-control" name="jumlah_barang" required>
                             </div>
                             <div class="form-group">

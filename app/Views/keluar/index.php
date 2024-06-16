@@ -23,7 +23,7 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama Produk</th>
-                                                <th>Jumlah Barang</th>
+                                                <th>Jumlah Barang Keluar</th>
                                                 <th>Tanggal Keluar</th>
                                                 <th>Aksi</th>
                                             </tr>
