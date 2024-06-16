@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="/assets/css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="/assets/images/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <?= $this->renderSection('styles') ?>
 </head>
 
@@ -64,6 +65,40 @@
     <!-- Custom js for this page-->
     <!-- <script src="/assets/js/dashboard.js"></script> -->
     <script src="/assets/js/Chart.roundedBarCharts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+               $(document).ready(function() {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "2000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+
+            <?php if(session()->has('success')): ?>
+                toastr.success("<?= session('success') ?>");
+            <?php endif; ?>
+
+            <?php if(session()->has('error')): ?>
+                toastr.error("<?= session('error') ?>");
+            <?php endif; ?>
+
+            <?php if(session()->has('update')): ?>
+                toastr.info("<?= session('update') ?>");
+            <?php endif; ?>
+               });
+    </script>
     <?= $this->renderSection('javascript') ?>
     <!-- End custom js for this page-->
 </body>

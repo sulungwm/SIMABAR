@@ -15,6 +15,7 @@ class MasukModel extends Model
     {
         return $this->select('tb_barangmasuk.*, tb_produk.nama_produk')
             ->join('tb_produk', 'tb_produk.id_produk = tb_barangmasuk.id_produk')
+            ->orderBy('tanggal_masuk', 'DESC') 
             ->findAll();
     }
 }

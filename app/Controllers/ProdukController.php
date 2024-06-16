@@ -34,7 +34,7 @@ class ProdukController extends BaseController
             'kategori' => $kategori,
             'jenis' => $jenis,
         ];
-
+     
         return view('produk/create', $data);
     }
 
@@ -52,6 +52,7 @@ class ProdukController extends BaseController
         ];
 
         $this->ProdukModel->insert($data);
+        session()->setFlashdata('success', 'Data berhasil ditambahkan!');
         return redirect()->to('/produk');
     }
 
@@ -88,6 +89,18 @@ class ProdukController extends BaseController
     public function delete($id)
     {
         $this->ProdukModel->delete($id);
+        session()->setFlashdata('error', 'Data berhasil dihapus!');
         return redirect()->to('/produk');
     }
+
+    public function cekstok()
+    {
+        $id_produk = $this->request->getPost('id_produk');
+        $produk = $this->ProdukModel->find($id_produk);
+        if ($produk) {
+            return $this->response->setJSON(['stock' => $produk['stock']]);
+        }
+        return $this->response->setJSON(['stock' => 0], 404);
+    }
+
 }

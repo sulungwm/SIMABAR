@@ -59,10 +59,9 @@ class DetailProdukController extends BaseController
 
     private function centerCropSquare($filePath)
     {
-        // Load the image manipulation library
         $image = \Config\Services::image()
             ->withFile($filePath)
-            ->fit(200, 200, 'center')
+            ->fit(400, 400, 'center')
             ->save($filePath);
     }
 
@@ -71,13 +70,9 @@ class DetailProdukController extends BaseController
         $detailProduk = $this->DetailProduk->find($id);
         if ($detailProduk) {
             $filePath = ROOTPATH . 'public/uploads/' . $detailProduk['nama_file'];
-
-            // Delete the file from the directory
             if (file_exists($filePath)) {
                 unlink($filePath);
             }
-
-            // Delete the record from the database
             $this->DetailProduk->delete($id);
 
             return redirect()->to('/detailproduk/show/' . $detailProduk['id_produk'])->with('success', 'File deleted successfully.');

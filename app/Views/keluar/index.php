@@ -12,7 +12,7 @@
                                 <p class="card-title">Data Barang Keluar</p>
                             </div>
                             <div class="col-2 text-end">
-                                <a class="btn btn-success btn-sm" href="/masuk/create">Tambah Produk</a>
+                                <a class="btn btn-success btn-sm" href="/keluar/create">Tambah Barang Keluar</a>
                             </div>
                         </div>
                         <div class="row">
@@ -38,7 +38,7 @@
                                                     <td><?= $row['tanggal_keluar']; ?></td>
                                                     <td>
                                                         <!-- <a href="/detailproduk/show/<?= $row['id_produk']; ?>" class="btn btn-sm btn-dark">Detail</a> -->
-                                                        <!-- <a href="/produk/edit/<?= $row['id_produk']; ?>" class="btn btn-sm btn-primary">Edit</a> -->
+                                                        <a href="/keluar/edit/<?= $row['id_barangkeluar']; ?>" class="btn btn-sm btn-primary">Edit</a>
                                                         <a href="/keluar/delete/<?= $row['id_barangkeluar']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Delete</a>
                                                     </td>
                                                 </tr>

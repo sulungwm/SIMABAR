@@ -15,6 +15,7 @@ class KeluarModel extends Model
     {
         return $this->select('tb_barangkeluar.*, tb_produk.nama_produk')
             ->join('tb_produk', 'tb_produk.id_produk = tb_barangkeluar.id_produk')
+            ->orderBy('tanggal_keluar', 'DESC') 
             ->findAll();
     }
 }
