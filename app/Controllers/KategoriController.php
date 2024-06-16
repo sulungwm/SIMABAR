@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\KategoriModel;
+
 class KategoriController extends BaseController
 {
     protected $KategoriModel;
@@ -32,6 +33,7 @@ class KategoriController extends BaseController
         ];
 
         $this->KategoriModel->insert($data);
+        session()->setFlashdata('success', 'Data berhasil ditambahkan!');
         return redirect()->to('/kategori');
     }
 
@@ -51,13 +53,15 @@ class KategoriController extends BaseController
         $data = [
             'nama_kategori' => $this->request->getPost('nama_kategori'),
         ];
-        $this->KategoriModel->update($id,$data);
+        $this->KategoriModel->update($id, $data);
+        session()->setFlashdata('update', 'Data berhasil diperbarui!');
         return redirect()->to('/kategori');
     }
 
     public function delete($id)
     {
         $this->KategoriModel->delete($id);
+        session()->setFlashdata('error', 'Data berhasil dihapus!');
         return redirect()->to('/kategori');
     }
 }

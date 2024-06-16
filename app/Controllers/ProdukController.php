@@ -91,6 +91,7 @@ class ProdukController extends BaseController
         ];
 
         $this->ProdukModel->update($id, $data);
+        session()->setFlashdata('update', 'Data berhasil diperbarui!');
         return redirect()->to('/produk');
     }
 
@@ -207,6 +208,4 @@ class ProdukController extends BaseController
         $writer->save('php://output');
         exit();
     }
-
-
 }
