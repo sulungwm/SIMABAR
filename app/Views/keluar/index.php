@@ -75,7 +75,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button type="submit" style="float: right;" class="btn btn-primary ">Simpan</button>
+                                                    <button type="submit" style="float: right;" class="btn btn-primary ">Cetak</button>
                                                 </form>
                                             </div>
                                         </div>

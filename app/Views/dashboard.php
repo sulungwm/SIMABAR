@@ -2,19 +2,44 @@
 <?= $this->section('content') ?>
 <div class="main-panel">
     <div class="content-wrapper">
-
+        <div class="row">
+            <div class="col-md-12 grid-margin transparent">
+                <div class="row">
+                    <div class="col-md-4 mb-2 stretch-card transparent">
+                        <div class="card card-tale">
+                            <div class="card-body">
+                                <p class="mb-4">Jumlah Produk</p>
+                                <p class="fs-30 mb-2"><?= $stok; ?></p>
+                                <p>total jenis produk</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-2 stretch-card transparent">
+                        <div class="card card-dark-blue">
+                            <div class="card-body">
+                                <p class="mb-4">Barang Masuk</p>
+                                <p class="fs-30 mb-2"><?= $masuk; ?></p>
+                                <p>total transaksi barang masuk</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-2 stretch-card transparent">
+                        <div class="card card-light-danger">
+                            <div class="card-body">
+                                <p class="mb-4">Barang Keluar</p>
+                                <p class="fs-30 mb-2"><?= $keluar; ?></p>
+                                <p>total transaksi barang keluar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row mb-4">
-                            <div class="col-10">
-                                <p class="card-title">Data Produk</p>
-                            </div>
-                            <div class="col-2 text-end">
-                                <a class="btn btn-success btn-sm" href="/produk/create">Tambah Produk</a>
-                            </div>
-                        </div>
+                      
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
@@ -27,7 +52,6 @@
                                                 <th>Jenis</th>
                                                 <th>Harga</th>
                                                 <th>Stok</th>
-                                                <th>aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -40,11 +64,6 @@
                                                     <td><?= $row['nama_jenis']; ?></td>
                                                     <td><?= 'Rp ' . number_format($row['harga'], 0, ',', '.'); ?></td>
                                                     <td><?= $row['stock']; ?></td>
-                                                    <td>
-                                                        <a href="/detailproduk/show/<?= $row['id_produk']; ?>" class="btn btn-sm btn-dark">Detail</a>
-                                                        <a href="/produk/edit/<?= $row['id_produk']; ?>" class="btn btn-sm btn-primary">Edit</a>
-                                                        <a href="/produk/delete/<?= $row['id_produk']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Delete</a>
-                                                    </td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
@@ -75,5 +94,4 @@
         $('#table-1').DataTable();
     });
 </script>
-
 <?= $this->endSection() ?>

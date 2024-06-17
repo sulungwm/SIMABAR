@@ -26,7 +26,7 @@
                  </div>
              </li>
              <li class="nav-item nav-settings d-none d-lg-flex">
-                 <h5 style="display: flex; align-items: center;"><?= session('username'); ?></h5>
+                 <h5 style="display: flex; align-items: center;"><?= session('email'); ?></h5>
              </li>
          </ul>
          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">

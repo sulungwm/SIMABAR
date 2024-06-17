@@ -22,8 +22,9 @@
     <link rel="stylesheet" href="/assets/css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="/assets/images/favicon.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     <?= $this->renderSection('styles') ?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body>
@@ -65,9 +66,10 @@
     <!-- Custom js for this page-->
     <!-- <script src="/assets/js/dashboard.js"></script> -->
     <script src="/assets/js/Chart.roundedBarCharts.js"></script>
+    <?= $this->renderSection('javascript') ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
-               $(document).ready(function() {
+        $(document).ready(function() {
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -86,20 +88,20 @@
                 "hideMethod": "fadeOut"
             };
 
-            <?php if(session()->has('success')): ?>
+            <?php if (session()->has('success')) : ?>
                 toastr.success("<?= session('success') ?>");
             <?php endif; ?>
 
-            <?php if(session()->has('error')): ?>
+            <?php if (session()->has('error')) : ?>
                 toastr.error("<?= session('error') ?>");
             <?php endif; ?>
 
-            <?php if(session()->has('update')): ?>
+            <?php if (session()->has('update')) : ?>
                 toastr.info("<?= session('update') ?>");
             <?php endif; ?>
-               });
+        });
     </script>
-    <?= $this->renderSection('javascript') ?>
+
     <!-- End custom js for this page-->
 </body>
 

@@ -15,7 +15,7 @@
                                 <a class="btn btn-success btn-sm" href="/produk/create">Tambah Produk</a>
                             </div> -->
                         </div>
-                        <form action="/produk/cetakrekap" method="post" target="_blank">
+                        <form action="/rekap/cetakrekap" method="post" target="_blank">
                             <div class="row">
 
                                 <div class="col-md-6">

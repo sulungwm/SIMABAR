@@ -75,7 +75,7 @@ class DetailProdukController extends BaseController
             }
             $this->DetailProduk->delete($id);
 
-            return redirect()->to('/detailproduk/show/' . $detailProduk['id_produk'])->with('success', 'File deleted successfully.');
+            return redirect()->to('/detailproduk/show/' . $detailProduk['id_produk'])->with('error', 'File deleted successfully.');
         }
 
         return redirect()->back()->with('error', 'File not found.');

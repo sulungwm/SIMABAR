@@ -10,12 +10,15 @@
                    <span class="menu-title">Dashboard</span>
                </a>
            </li>
-           <li class="nav-item  <?= (strpos($uri, '/user') !== false) ? 'active' : '' ?>">
-               <a class="nav-link" href="/user">
-                   <i class="ti-user menu-icon"></i>
-                   <span class="menu-title">User</span>
-               </a>
-           </li>
+
+           <?php if (session()->get('role') === 'admin') : ?>
+               <li class="nav-item <?= (strpos($uri, '/user') !== false) ? 'active' : '' ?>">
+                   <a class="nav-link" href="/user">
+                       <i class="ti-user menu-icon"></i>
+                       <span class="menu-title">User</span>
+                   </a>
+               </li>
+           <?php endif; ?>
            <li class="nav-item  ">
                <a class="nav-link" data-toggle="collapse" href="#ui-basic22" aria-expanded="false" aria-controls="ui-basic">
                    <i class="ti-folder menu-icon"></i>
@@ -57,7 +60,7 @@
 
            <li class="nav-item  <?= (strpos($uri, '/rekap') !== false) ? 'active' : '' ?>">
                <a class="nav-link" href="/rekap">
-                   <i class="ti-save menu-icon"></i>
+                   <i class="ti-printer menu-icon"></i>
                    <span class="menu-title">Rekapitulasi</span>
                </a>
            </li>
