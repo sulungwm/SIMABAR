@@ -59,6 +59,7 @@ class MasukController extends BaseController
         ];
 
         $this->MasukModel->insert($data);
+        session()->setFlashdata('success', 'Data berhasil ditambahkan!');
         return redirect()->to('/masuk');
     }
 
@@ -75,6 +76,7 @@ class MasukController extends BaseController
         }
 
         $this->MasukModel->delete($id);
+        session()->setFlashdata('error', 'Data berhasil dihapus!');
         return redirect()->to('/masuk');
     }
 
@@ -125,8 +127,7 @@ class MasukController extends BaseController
             'tanggal_masuk' => $tanggal_masuk
         ];
         $this->MasukModel->update($id, $data);
-
-
+        session()->setFlashdata('update', 'Data berhasil diperbarui!');
         return redirect()->to('/masuk');
     }
 
@@ -143,7 +144,7 @@ class MasukController extends BaseController
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->setTitle('Data Barang Masuk');
 
-    
+
         // Header kolom
         $sheet->setCellValue('A1', 'No');
         $sheet->setCellValue('B1', 'Nama Produk');
@@ -186,7 +187,7 @@ class MasukController extends BaseController
 
         // Membuat file Excel
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
-        $filename = 'data_pemasukan_barang_' . $tgl_awal. '_-_' . $tgl_akhir . '.xlsx';
+        $filename = 'data_pemasukan_barang_' . $tgl_awal . '_-_' . $tgl_akhir . '.xlsx';
 
         // Simpan file Excel ke folder tertentu atau langsung unduh
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -196,9 +197,4 @@ class MasukController extends BaseController
         $writer->save('php://output');
         exit();
     }
-
-
-
-
-
 }

@@ -59,6 +59,7 @@ class KeluarController extends BaseController
         ];
 
         $this->KeluarModel->insert($data);
+        session()->setFlashdata('success', 'Data berhasil ditambahkan!');
         return redirect()->to('/keluar');
     }
 
@@ -73,8 +74,9 @@ class KeluarController extends BaseController
             $dataProduk['stock'] = $jumlah_baru;
             $this->ProdukModel->update($barang_keluar['id_produk'], $dataProduk);
         }
-        
+
         $this->KeluarModel->delete($id);
+        session()->setFlashdata('error', 'Data berhasil dihapus!');
         return redirect()->to('/keluar');
     }
 
@@ -133,8 +135,7 @@ class KeluarController extends BaseController
             'tanggal_keluar' => $tanggal_keluar
         ];
         $this->KeluarModel->update($id, $data);
-
-
+        session()->setFlashdata('update', 'Data berhasil diperbarui!');
         return redirect()->to('/keluar');
     }
 
@@ -204,5 +205,4 @@ class KeluarController extends BaseController
         $writer->save('php://output');
         exit();
     }
-
 }

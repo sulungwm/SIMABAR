@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\JenisModel;
+
 class JenisController extends BaseController
 {
     protected $JenisModel;
@@ -32,6 +33,7 @@ class JenisController extends BaseController
         ];
 
         $this->JenisModel->insert($data);
+        session()->setFlashdata('success', 'Data berhasil ditambahkan!');
         return redirect()->to('/jenis');
     }
 
@@ -52,12 +54,14 @@ class JenisController extends BaseController
             'nama_jenis' => $this->request->getPost('nama_jenis'),
         ];
         $this->JenisModel->update($id, $data);
+        session()->setFlashdata('update', 'Data berhasil diperbarui!');
         return redirect()->to('/jenis');
     }
 
     public function delete($id)
     {
         $this->JenisModel->delete($id);
+        session()->setFlashdata('error', 'Data berhasil dihapus!');
         return redirect()->to('/jenis');
     }
 }

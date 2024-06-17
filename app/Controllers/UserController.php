@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\UserModel;
+
 class UserController extends BaseController
 {
     protected $UserModel;
@@ -16,12 +17,12 @@ class UserController extends BaseController
     public function index()
     {
         $data['user'] = $this->UserModel->findAll();
-        return view('user/index',$data);
+        return view('user/index', $data);
     }
 
     public function create()
     {
-       return view('user/create');
+        return view('user/create');
     }
 
     public function add()
@@ -33,6 +34,7 @@ class UserController extends BaseController
         ];
 
         $this->UserModel->insert($data);
+        session()->setFlashdata('success', 'Data berhasil ditambahkan!');
         return redirect()->to('/user');
     }
 
@@ -51,17 +53,19 @@ class UserController extends BaseController
     {
 
         $data = [
-          'email' => $this->request->getPost('email'),
-          'role' => $this->request->getPost('role')
+            'email' => $this->request->getPost('email'),
+            'role' => $this->request->getPost('role')
         ];
 
-        $this->UserModel->update($id,$data);
+        $this->UserModel->update($id, $data);
+        session()->setFlashdata('update', 'Data berhasil diperbarui!');
         return redirect()->to('/user');
     }
 
     public function delete($id)
     {
         $this->UserModel->delete($id);
+        session()->setFlashdata('error', 'Data berhasil dihapus!');
         return redirect()->to('/user');
     }
 }
