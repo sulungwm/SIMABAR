@@ -36,4 +36,11 @@ class MasukModel extends Model
             ->where('tanggal_masuk <=', $tgl_akhir)
             ->first()['jumlah_barang'] ?? 0;
     }
+
+    public function getCount()
+    {
+        return $this->select('tb_barangmasuk.*, tb_produk.nama_produk')
+        ->join('tb_produk', 'tb_produk.id_produk = tb_barangmasuk.id_produk')
+        ->countAllResults();
+    }
 }

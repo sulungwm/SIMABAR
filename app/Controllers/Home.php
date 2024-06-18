@@ -20,9 +20,9 @@ class Home extends BaseController
     public function index()
     {
         $data['produk'] = $this->ProdukModel->getAll();
-        $data['stok'] = $this->ProdukModel->countAllResults();
-        $data['masuk'] = $this->MasukModel->countAllResults();
-        $data['keluar'] = $this->KeluarModel->countAllResults();
+        $data['stok'] = $this->ProdukModel->getCount();
+        $data['masuk'] = $this->MasukModel->getCount();
+        $data['keluar'] = $this->KeluarModel->getCount();
         return view('dashboard',$data);
     }
 }

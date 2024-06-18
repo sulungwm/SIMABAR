@@ -36,4 +36,11 @@ class KeluarModel extends Model
             ->where('tanggal_keluar <=', $tgl_akhir)
             ->first()['jumlah_barang'] ?? 0;
     }
+
+    public function getCount()
+    {
+        return $this->select('tb_barangkeluar.*, tb_produk.nama_produk')
+        ->join('tb_produk', 'tb_produk.id_produk = tb_barangkeluar.id_produk')
+        ->countAllResults();
+    }
 }

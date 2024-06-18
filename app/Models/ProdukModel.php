@@ -29,4 +29,13 @@ class ProdukModel extends Model
             ->where('tb_produk.id_produk', $id)
             ->first();
     }
+
+    public function getCount()
+    {
+        return $this->select('tb_produk.*, tb_user.email, tb_jenis_barang.nama_jenis, tb_kategori_barang.nama_kategori')
+        ->join('tb_user', 'tb_user.id_user = tb_produk.id_user')
+        ->join('tb_kategori_barang', 'tb_kategori_barang.id_kategori = tb_produk.id_kategori')
+        ->join('tb_jenis_barang', 'tb_jenis_barang.id_jenis = tb_produk.id_jenis')
+        ->countAllResults();
+    }
 }
